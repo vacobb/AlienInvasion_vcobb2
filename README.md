@@ -1,5 +1,23 @@
 # Alien Invasion
 
+
+## Tutorial 2 Reqs
+
+### I choose to do track 2 - Complete Thematic Reskin
+
+Spaceship & bullet assets - <[URL](https://kenney.nl/assets/space-shooter-remastered)>
+
+Background asset - <[URL](https://gamercrafter.itch.io/spacebackgrounds)>
+
+Possible HUD assets - <[URL](https://kenney.nl/assets/ui-pack-sci-fi)>
+
+Possible sounds - <[URL](https://kenney.nl/assets/sci-fi-sounds)>
+
+Font - <[URL](https://fonts.google.com/specimen/Nova+Square?categoryFilters=Appearance:%2FTheme%2FTechno&preview.script=Latn)>
+
+Music - <[URL](https://uppbeat.io/music/tracks/tecnosine/europa)>
+
+
 ## Overview
 
 Alien Invasion is a Python-based arcade-style game inspired by classic space shooters. The player controls a spaceship and must defend Earth from waves of invading aliens. The goal is to survive as long as possible, eliminate enemy ships, and achieve the highest score possible.
@@ -108,6 +126,10 @@ Potential improvements for future versions include:
 
 Vaughn Cobb
 
+Software Development Student
+
+Columbus State Community College
+
 ## License
 
-This project was created for educational purposes as part of a Python programming course.
+This project was created for educational purposes as part of a Python programming course using source code from Python Crash Course, 2nd Edition by Eric Matthes. 
