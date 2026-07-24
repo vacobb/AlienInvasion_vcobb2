@@ -31,6 +31,7 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion - Track 2")
 
         self.bg_color = self.settings.bg_color
+        self.bg_image = pygame.image.load('Assets/images/Starbasesnow.png').convert_alpha()
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
@@ -127,21 +128,21 @@ class AlienInvasion:
 
     def _check_keydown_events(self, event):
         """ Controls have happens on key down events. """
-        if event.key == pygame.K_RIGHT:
+        if event.key in (pygame.K_RIGHT, pygame.K_d):
             self.ship.moving_right = True
-        elif event.key == pygame.K_LEFT:
+        elif event.key in (pygame.K_LEFT, pygame.K_a):
             self.ship.moving_left = True
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
-        elif event.key == pygame.K_q:
+        elif event.key in (pygame.K_q, pygame.K_ESCAPE):
             sys.exit()
 
 
     def _check_keyup_events(self, event):
         """ Controls what happens on key up events. """
-        if event.key == pygame.K_RIGHT:
+        if event.key in (pygame.K_RIGHT, pygame.K_d):
             self.ship.moving_right = False
-        elif event.key == pygame.K_LEFT:
+        elif event.key in (pygame.K_LEFT, pygame.K_a):
             self.ship.moving_left = False
     
     
@@ -154,7 +155,10 @@ class AlienInvasion:
     
     def _update_screen(self):
         """ Redraws screen, updating with what has changed since last frame. """
-        self.screen.fill(self.bg_color)
+        if self.bg_image:
+            self.screen.blit(self.bg_image, (0, 0))
+        else:
+            self.screen.fill(self.settings.bg_color)
 
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()

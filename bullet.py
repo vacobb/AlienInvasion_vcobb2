@@ -13,9 +13,9 @@ class Bullet(Sprite):
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
-        self.color = self.settings.bullet_color
+        self.image = pygame.image.load('Assets/images/laserBlast.png').convert_alpha()
 
-        self.rect = pygame.Rect(0, 0, self.settings.bullet_width, self.settings.bullet_height)
+        self.rect = self.image.get_rect()
         
         self.rect.midtop = ai_game.ship.rect.midtop
 
@@ -27,4 +27,4 @@ class Bullet(Sprite):
     
     def draw_bullet(self):
         """ Creates bullet asset on screen. """
-        pygame.draw.rect(self.screen, self.color, self.rect)
+        self.screen.blit(self.image, self.rect)

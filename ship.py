@@ -15,7 +15,7 @@ class Ship(Sprite):
         self.screen_rect = self.screen.get_rect()
         self.settings = ai_game.settings
 
-        self.image = pygame.image.load('images/ship.bmp')
+        self.image = pygame.image.load('Assets/images/ship.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.center_ship()
         self.moving_right = False

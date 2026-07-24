@@ -4,6 +4,8 @@ This is a reskin of the classic Alien Invaders arcade game.
 Starter code was taken from Alien Invaders tutorial completed in class
 24-July-2026 """
 
+import pygame
+
 class Settings:
     """ Handles game's setting details. """
     def __init__(self):
@@ -12,14 +14,12 @@ class Settings:
         self.screen_height = 800
         self.resolution = (self.screen_width, self.screen_height)
         self.bg_color = (230, 230, 230)
+        #self.bg_image = pygame.image.load('Assets/images/Starbasesnow.png').convert_alpha()
 
         # Ship settings
         self.player_lives = 3   # ship_limit in tutorial
 
         # Bullet settings
-        self.bullet_width = 3.0
-        self.bullet_height = 15.0
-        self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 5.0
 
         # Aliens' settings
