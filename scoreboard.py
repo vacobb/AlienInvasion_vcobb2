@@ -1,8 +1,15 @@
+""" Alien Invaders - Track 2 (Custom Assets)
+Vaughn Cobb
+This is a reskin of the classic Alien Invaders arcade game. 
+Starter code was taken from Alien Invaders tutorial completed in class
+24-July-2026 """
+
 import pygame.font
 from pygame.sprite import Group
 from ship import Ship
 
 class Scoreboard:
+    """ Handles logic for scoring and how it's displayed. """
     def __init__(self, ai_game):
         self.ai_game = ai_game
         self.screen = ai_game.screen
@@ -20,8 +27,9 @@ class Scoreboard:
 
     
     def prep_score(self):
+        """ Formats score to be displayed in HUD. """
         rounded_score = round(self.stats.score, -1)
-        score_str = f"{rounded_score:,}"     # 1000000 -> 1,000,000
+        score_str = f"{rounded_score:,}"
         self.score_image = self.font.render(score_str, True, self.text_color, self.settings.bg_color)
 
         self.score_rect = self.score_image.get_rect()
@@ -30,6 +38,7 @@ class Scoreboard:
 
 
     def prep_high_score(self):
+        """ Formats high score to be displayed in HUD. """
         high_score = round(self.stats.high_score, -1)
         high_score_str = f"{high_score:,}"
         self.high_score_image = self.font.render(high_score_str, True, self.text_color, self.settings.bg_color)
@@ -40,6 +49,7 @@ class Scoreboard:
 
     
     def show_score(self):   # Bad name, consider show_scoreboard
+        """ Draws scoreboard information to HUD. """
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
@@ -47,12 +57,14 @@ class Scoreboard:
 
 
     def check_high_score(self):
+        """ Checks for high score to update as needed. """
         if self.stats.score > self.stats.high_score:
             self.stats.high_score = self.stats.score
             self.prep_high_score()
 
 
     def prep_level(self):
+        """ Formats level number to be displayed in HUD. """
         level_str = str(self.stats.level)
         self.level_image = self.font.render(level_str, True, self.text_color, self.settings.bg_color)
 
@@ -62,6 +74,7 @@ class Scoreboard:
 
 
     def prep_ships(self):
+        """ Formats ship sprites to be displayed in HUD. """
         self.ships = Group()
         for ship_num in range(self.stats.ships_remaining):
             ship = Ship(self.ai_game)

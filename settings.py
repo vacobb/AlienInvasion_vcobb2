@@ -1,4 +1,11 @@
+""" Alien Invaders - Track 2 (Custom Assets)
+Vaughn Cobb
+This is a reskin of the classic Alien Invaders arcade game. 
+Starter code was taken from Alien Invaders tutorial completed in class
+24-July-2026 """
+
 class Settings:
+    """ Handles game's setting details. """
     def __init__(self):
         # Window settings
         self.screen_width = 1200
@@ -15,9 +22,8 @@ class Settings:
         self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 5.0
 
-        # Aliens settings
+        # Aliens' settings
         self.fleet_drop_speed = 10.0
-
 
         # Difficulty increase settings
         self.speedup_scale = 1.1
@@ -27,6 +33,7 @@ class Settings:
 
     
     def initialize_dynamic_settings(self):
+        """ Provides starting poingt for the dynamic settings that evolve throughout gameplay. """
         self.ship_speed = 3.0
         self.alien_speed = 3.0
         self.bullet_speed = 5.0
@@ -36,6 +43,7 @@ class Settings:
 
 
     def increase_speed(self):   # increase_level might be a better name
+        """ Increases difficulty of game as levels increase. """
         self.ship_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
         self.bullet_speed *= self.speedup_scale
