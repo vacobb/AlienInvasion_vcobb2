@@ -9,13 +9,23 @@ from pygame.sprite import Sprite
 
 class Ship(Sprite):
     """ Handles logic for player's ship sprites in game. """
-    def __init__(self, ai_game):
+    def __init__(self, ai_game, scale=1.0):
         super().__init__()
         self.screen = ai_game.screen
         self.screen_rect = self.screen.get_rect()
         self.settings = ai_game.settings
 
-        self.image = pygame.image.load('Assets/images/ship.png').convert_alpha()
+        self.image = pygame.image.load('Assets/images/playerShip1_blue.png').convert_alpha()
+
+        if scale != 1.0:
+            width = int(self.image.get_width() * scale)
+            height = int(self.image.get_height() * scale)
+
+            self.image = pygame.transform.smoothscale(
+                self.image,
+                (width, height)
+            )
+
         self.rect = self.image.get_rect()
         self.center_ship()
         self.moving_right = False

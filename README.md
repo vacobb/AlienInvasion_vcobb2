@@ -9,6 +9,8 @@ Spaceship & bullet assets - <[URL](https://kenney.nl/assets/space-shooter-remast
 
 Background asset - <[URL](https://gamercrafter.itch.io/spacebackgrounds)>
 
+Explosion assets - <[URL](https://bdragon1727.itch.io/200-pixel-shader-explos-and-power)>
+
 Possible HUD assets - <[URL](https://kenney.nl/assets/ui-pack-sci-fi)>
 
 Possible sounds - <[URL](https://kenney.nl/assets/sci-fi-sounds)>

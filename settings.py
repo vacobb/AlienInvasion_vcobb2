@@ -14,7 +14,6 @@ class Settings:
         self.screen_height = 800
         self.resolution = (self.screen_width, self.screen_height)
         self.bg_color = (230, 230, 230)
-        #self.bg_image = pygame.image.load('Assets/images/Starbasesnow.png').convert_alpha()
 
         # Ship settings
         self.player_lives = 3   # ship_limit in tutorial

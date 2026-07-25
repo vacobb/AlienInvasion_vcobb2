@@ -77,7 +77,7 @@ class Scoreboard:
         """ Formats ship sprites to be displayed in HUD. """
         self.ships = Group()
         for ship_num in range(self.stats.ships_remaining):
-            ship = Ship(self.ai_game)
+            ship = Ship(self.ai_game, scale=0.5)
             ship.rect.x = 10 + ship_num * ship.rect.width
             ship.rect.y = 10
             self.ships.add(ship)

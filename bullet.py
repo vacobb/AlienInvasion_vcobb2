@@ -13,7 +13,7 @@ class Bullet(Sprite):
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
-        self.image = pygame.image.load('Assets/images/laserBlast.png').convert_alpha()
+        self.image = pygame.image.load('Assets/images/laserBlue01.png').convert_alpha()
 
         self.rect = self.image.get_rect()
         

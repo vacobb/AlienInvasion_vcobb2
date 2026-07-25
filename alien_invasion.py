@@ -31,7 +31,8 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion - Track 2")
 
         self.bg_color = self.settings.bg_color
-        self.bg_image = pygame.image.load('Assets/images/Starbasesnow.png').convert_alpha()
+        self.bg_image = pygame.image.load('Assets/images/background01.png').convert_alpha()
+        self.bg_image = pygame.transform.scale(self.bg_image,(self.settings.screen_width, self.settings.screen_height))
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
@@ -71,10 +72,14 @@ class AlienInvasion:
     def _check_bullet_alien_collisions(self):
         """ Checks for bullets collisions with aliens and initiates resulting logic. """
         collisions = pygame.sprite.groupcollide(
-            self.bullets, self.aliens, True, True
+            self.bullets, self.aliens, True, False
         )
 
         if collisions:
+            for aliens in collisions.values():
+                for alien in aliens:
+                    alien.explode()
+
             self.stats.score += self.settings.alien_points
             self.scoreboard.prep_score()
             self.scoreboard.check_high_score()
@@ -171,7 +176,7 @@ class AlienInvasion:
         if not self.game_active:
             self.play_button.draw_button()
 
-        pygame.display.flip()   # We draw to a display behind what is shown. Flip switches between themm.
+        pygame.display.flip()
 
 
     def _create_fleet(self):
@@ -181,7 +186,7 @@ class AlienInvasion:
         alien_height = alien.rect.height
         current_x, current_y = alien_width, alien_height
         
-        while current_y < (self.settings.screen_height - 3 * alien_height):    # Start with y for a spreadsheet. 
+        while current_y < (self.settings.screen_height - 3 * alien_height): 
             while current_x < (self.settings.screen_width - 2 * alien_width):
                 self._create_alien(current_x, current_y)
                 current_x += 2 * alien_width
@@ -203,7 +208,6 @@ class AlienInvasion:
         self._check_fleet_edges()
         self.aliens.update()
 
-        # Has an alien ship collieded with the hero ship?
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
         
