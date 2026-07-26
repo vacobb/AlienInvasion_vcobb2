@@ -1,7 +1,7 @@
 """ Alien Invaders - Track 2 (Custom Assets)
 Vaughn Cobb
 This is a reskin of the classic Alien Invaders arcade game. 
-Starter code was taken from Alien Invaders tutorial completed in class
+Starter code was taken from Alien Invaders tutorial completed in class - taken from Python Crash Course.
 24-July-2026 """
 
 import pygame
@@ -9,7 +9,9 @@ from pygame.sprite import Sprite
 
 class Alien(Sprite):
     """ Handles logic for alien sprites in game. """
+
     def __init__(self, ai_game):
+        """ Initialize attributes of an alien sprite. """
         super().__init__()
 
         self.screen = ai_game.screen
@@ -46,4 +48,3 @@ class Alien(Sprite):
         self.image = pygame.image.load("Assets/images/explosion.png").convert_alpha()
         self.rect = self.image.get_rect(center=self.rect.center)
         self.exploding = True
-        

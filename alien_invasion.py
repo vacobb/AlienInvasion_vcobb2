@@ -1,9 +1,10 @@
 """ Alien Invaders - Track 2 (Custom Assets)
 Vaughn Cobb
 This is a reskin of the classic Alien Invaders arcade game. 
-Starter code was taken from Alien Invaders tutorial completed in class
+Starter code was taken from Alien Invaders tutorial completed in class - taken from Python Crash Course.
 24-July-2026 """
 
+import random
 import sys
 from time import sleep
 
@@ -20,7 +21,9 @@ from scoreboard import Scoreboard
 
 class AlienInvasion:
     """ Game engine. """
+
     def __init__(self):
+        """ Initialize attributes of the game engine. """
         pygame.init()
 
         self.game_active = False
@@ -41,6 +44,10 @@ class AlienInvasion:
         self.scoreboard = Scoreboard(self)
         self.play_button = Button(self, "Play")
 
+        self.shake_timer = 0
+        self.shake_intensity = 0
+        self.screen_offset = pygame.Vector2(0, 0)
+
         self._create_fleet()
 
     
@@ -54,7 +61,9 @@ class AlienInvasion:
                 self._update_bullets()
                 self._update_aliens()
                 
-            self._update_screen()     
+            self._update_screen_shake()
+            self._update_screen()
+
             self.clock.tick(60)     # 60 fps
 
 
@@ -87,7 +96,7 @@ class AlienInvasion:
         if not self.aliens:
             self.bullets.empty()
             self._create_fleet()
-            self.settings.increase_speed()
+            self.settings.increase_level()
             self.stats.level += 1
             self.scoreboard.prep_level()
 
@@ -161,7 +170,7 @@ class AlienInvasion:
     def _update_screen(self):
         """ Redraws screen, updating with what has changed since last frame. """
         if self.bg_image:
-            self.screen.blit(self.bg_image, (0, 0))
+            self.screen.blit(self.bg_image, self.screen_offset)
         else:
             self.screen.fill(self.settings.bg_color)
 
@@ -171,7 +180,7 @@ class AlienInvasion:
         self.ship.blitme()
         self.aliens.draw(self.screen)
 
-        self.scoreboard.show_score()
+        self.scoreboard.show_scoreboard()
 
         if not self.game_active:
             self.play_button.draw_button()
@@ -216,9 +225,14 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """ Determins whether player ship has been hit. """
+        self._start_screen_shake(intensity=12, duration=20)
+
         if self.stats.ships_remaining > 0:
             self.stats.ships_remaining -= 1
             self.scoreboard.prep_ships()
+
+            self._update_screen_shake()
+            self._update_screen()
 
             self.bullets.empty()
             self.aliens.empty()
@@ -254,6 +268,23 @@ class AlienInvasion:
             if alien.rect.bottom >= self.settings.screen_height:
                 self._ship_hit()
                 break
+
+
+    def _start_screen_shake(self, intensity=10, duration=15):
+        """ Starts a screen shake effect. """
+        self.shake_intensity = intensity
+        self.shake_timer = duration
+
+
+    def _update_screen_shake(self):
+        """ Updates screen shake offset. """
+
+        if self.shake_timer > 0:
+            self.screen_offset.x = random.randint(-self.shake_intensity, self.shake_intensity)
+            self.screen_offset.y = random.randint(-self.shake_intensity, self.shake_intensity)
+            self.shake_timer -= 1
+        else:
+            self.screen_offset.update(0, 0)
 
 
 if __name__ == "__main__":

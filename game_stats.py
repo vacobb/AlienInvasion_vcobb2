@@ -1,12 +1,14 @@
 """ Alien Invaders - Track 2 (Custom Assets)
 Vaughn Cobb
 This is a reskin of the classic Alien Invaders arcade game. 
-Starter code was taken from Alien Invaders tutorial completed in class
+Starter code was taken from Alien Invaders tutorial completed in class - taken from Python Crash Course.
 24-July-2026 """
 
 class GameStats:
     """ Handles logic for game stats. """
+
     def __init__(self, ai_game):
+        """ Initialize attributes of the game stats. """
         self.settings = ai_game.settings
         self.high_score = 0
         self.reset_stats()

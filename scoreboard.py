@@ -1,7 +1,7 @@
 """ Alien Invaders - Track 2 (Custom Assets)
 Vaughn Cobb
 This is a reskin of the classic Alien Invaders arcade game. 
-Starter code was taken from Alien Invaders tutorial completed in class
+Starter code was taken from Alien Invaders tutorial completed in class - taken from Python Crash Course.
 24-July-2026 """
 
 import pygame.font
@@ -10,7 +10,9 @@ from ship import Ship
 
 class Scoreboard:
     """ Handles logic for scoring and how it's displayed. """
+
     def __init__(self, ai_game):
+        """ Initialize attributes of the scoring system. """
         self.ai_game = ai_game
         self.screen = ai_game.screen
         self.screen_rect = self.screen.get_rect()
@@ -48,7 +50,7 @@ class Scoreboard:
         self.high_score_rect.top = self.score_rect.top
 
     
-    def show_score(self):   # Bad name, consider show_scoreboard
+    def show_scoreboard(self):
         """ Draws scoreboard information to HUD. """
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)

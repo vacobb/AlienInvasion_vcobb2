@@ -1,14 +1,17 @@
 """ Alien Invaders - Track 2 (Custom Assets)
 Vaughn Cobb
 This is a reskin of the classic Alien Invaders arcade game. 
-Starter code was taken from Alien Invaders tutorial completed in class
+Starter code was taken from Alien Invaders tutorial completed in class - taken from Python Crash Course.
 24-July-2026 """
 
 import pygame
 
 class Settings:
     """ Handles game's setting details. """
+
     def __init__(self):
+        """ Initialize attributes of game settings. """
+
         # Window settings
         self.screen_width = 1200
         self.screen_height = 800
@@ -16,7 +19,7 @@ class Settings:
         self.bg_color = (230, 230, 230)
 
         # Ship settings
-        self.player_lives = 3   # ship_limit in tutorial
+        self.player_lives = 3
 
         # Bullet settings
         self.bullets_allowed = 5.0
@@ -41,7 +44,7 @@ class Settings:
         self.fleet_direction = 1
 
 
-    def increase_speed(self):   # increase_level might be a better name
+    def increase_level(self):
         """ Increases difficulty of game as levels increase. """
         self.ship_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
