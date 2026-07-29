@@ -6,6 +6,10 @@ Starter code was taken from Alien Invaders tutorial completed in class - taken f
 
 import pygame
 from pygame.sprite import Sprite
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+IMAGE_DIR = BASE_DIR / "Assets" / "images"
 
 class Ship(Sprite):
     """ Handles logic for player's ship sprites in game. """
@@ -17,7 +21,7 @@ class Ship(Sprite):
         self.screen_rect = self.screen.get_rect()
         self.settings = ai_game.settings
 
-        self.image = pygame.image.load('Assets/images/playerShip1_blue.png').convert_alpha()
+        self.image = pygame.image.load(IMAGE_DIR / 'playerShip1_blue.png').convert_alpha()
 
         if scale != 1.0:
             width = int(self.image.get_width() * scale)

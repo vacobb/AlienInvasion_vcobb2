@@ -6,6 +6,10 @@ Starter code was taken from Alien Invaders tutorial completed in class - taken f
 
 import pygame
 from pygame.sprite import Sprite
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+IMAGE_DIR = BASE_DIR / "Assets" / "images"
 
 class Bullet(Sprite):
     """ Handles logic for bullet sprites in game. """
@@ -15,7 +19,7 @@ class Bullet(Sprite):
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings
-        self.image = pygame.image.load('Assets/images/laserBlue01.png').convert_alpha()
+        self.image = pygame.image.load(IMAGE_DIR / 'laserBlue01.png').convert_alpha()
 
         self.rect = self.image.get_rect()
         

@@ -6,6 +6,10 @@ Starter code was taken from Alien Invaders tutorial completed in class - taken f
 
 import pygame
 from pygame.sprite import Sprite
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+IMAGE_DIR = BASE_DIR / "Assets" / "images"
 
 class Alien(Sprite):
     """ Handles logic for alien sprites in game. """
@@ -15,7 +19,7 @@ class Alien(Sprite):
         super().__init__()
 
         self.screen = ai_game.screen
-        self.image = pygame.image.load('Assets/images/enemyRed1.png').convert_alpha()
+        self.image = pygame.image.load(IMAGE_DIR / 'enemyRed1.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
@@ -45,6 +49,6 @@ class Alien(Sprite):
     
 
     def explode(self):
-        self.image = pygame.image.load("Assets/images/explosion.png").convert_alpha()
+        self.image = pygame.image.load(IMAGE_DIR / 'explosion.png').convert_alpha()
         self.rect = self.image.get_rect(center=self.rect.center)
         self.exploding = True
