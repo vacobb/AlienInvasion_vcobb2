@@ -1,6 +1,11 @@
 # Alien Invasion
 
 
+## Milestone 1
+For Milestone 1, I have updated the assets for the player ship, laser, and background. I have also implemented a few changes (not pictured) to how the game functions. Now, the game can be started with the spacebar and ended with the Esc key, likewise, the WASD keys can be used for player ship movement.
+<[URL](https://youtu.be/5QhgXsunOsY)>
+
+
 ## Tutorial 2 Reqs
 
 ### I choose to do track 2 - Complete Thematic Reskin
