@@ -4,9 +4,11 @@ This is a reskin of the classic Alien Invaders arcade game.
 Starter code was taken from Alien Invaders tutorial completed in class - taken from Python Crash Course.
 24-July-2026 """
 
+import json
 import random
 import sys
 from time import sleep
+from pathlib import Path
 
 import pygame
 
@@ -29,6 +31,12 @@ class AlienInvasion:
         self.game_active = False
 
         self.settings = Settings()
+
+        formations_file = Path(__file__).resolve().parent / "formations.json"
+
+        with open(formations_file) as f:
+            self.formations = json.load(f)
+
         self.screen = pygame.display.set_mode(self.settings.resolution)
         self.clock = pygame.time.Clock()
         pygame.display.set_caption("Alien Invasion - Track 2")
@@ -95,10 +103,10 @@ class AlienInvasion:
 
         if not self.aliens:
             self.bullets.empty()
-            self._create_fleet()
             self.settings.increase_level()
             self.stats.level += 1
             self.scoreboard.prep_level()
+            self._create_fleet()
 
     
     def _check_events(self):
@@ -190,21 +198,56 @@ class AlienInvasion:
 
         pygame.display.flip()
 
-
     def _create_fleet(self):
-        """ Creates the fleet of aliens at start of level. """
+        """Creates fleet from formation pattern."""
+
         alien = Alien(self)
+
         alien_width = alien.rect.width
         alien_height = alien.rect.height
-        current_x, current_y = alien_width, alien_height
+
+        horizontal_spacing = alien_width * 1.5
+        vertical_spacing = alien_height * 1.5
+
+        formation = self.formations[(self.stats.level - 1) % len(self.formations)]
+        formation_width = len(formation[0])
+        start_x = (self.settings.screen_width - formation_width * horizontal_spacing) // 2
+        start_y = 50
+
+        for row, line in enumerate(formation):
+            for col, char in enumerate(line):
+
+                if char == "X":
+
+                    x = (
+                        start_x
+                        + col * horizontal_spacing
+                    )
+
+                    y = (
+                        start_y
+                        + row * vertical_spacing
+                    )
+
+                    self._create_alien(x, y)
         
-        while current_y < (self.settings.screen_height - 3 * alien_height): 
-            while current_x < (self.settings.screen_width - 2 * alien_width):
-                self._create_alien(current_x, current_y)
-                current_x += 2 * alien_width
+    # def _create_fleet(self):
+    #     """ Creates the fleet of aliens at start of level. """
+    #     alien = Alien(self)
+    #     alien_width = alien.rect.width
+    #     alien_height = alien.rect.height
+    #     start_x = int(alien_width * 1.5)
+
+    #     current_x = start_x
+    #     current_y = alien_height
+
+    #     while current_y < (self.settings.screen_height - 3 * alien_height): 
+    #         while current_x < (self.settings.screen_width - 2 * alien_width):
+    #             self._create_alien(current_x, current_y)
+    #             current_x += 2 * alien_width
             
-            current_y += 2 * alien_height
-            current_x = alien_width
+    #         current_y += int(alien_height * 1.25) 
+    #         current_x = start_x
 
     
     def _create_alien(self, x_position, y_position):
