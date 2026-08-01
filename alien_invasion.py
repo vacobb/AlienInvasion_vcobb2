@@ -185,6 +185,8 @@ class AlienInvasion:
         else:
             self.screen.fill(self.settings.bg_color)
 
+        pygame.draw.rect(self.screen, (0, 0, 0), (0, 0, self.settings.screen_width, 60))
+
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
 
