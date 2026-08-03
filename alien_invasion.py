@@ -19,6 +19,7 @@ from ship import Ship
 from bullet import Bullet
 from button import Button
 from scoreboard import Scoreboard
+from score_manager import ScoreManager
 
 
 class AlienInvasion:
@@ -47,6 +48,8 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
+
+        self.score_manager = ScoreManager()
         
         self.stats = GameStats(self)
         self.scoreboard = Scoreboard(self)
@@ -292,6 +295,7 @@ class AlienInvasion:
         else:
             self.game_active = False
             pygame.mouse.set_visible(True)
+            self.score_manager.add_score(self.stats.score)
 
 
     def _check_fleet_edges(self):

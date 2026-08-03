@@ -7,6 +7,7 @@ Starter code was taken from Alien Invaders tutorial completed in class - taken f
 import pygame.font
 from pygame.sprite import Group
 from ship import Ship
+from score_manager import ScoreManager
 
 class Scoreboard:
     """ Handles logic for scoring and how it's displayed. """
@@ -18,6 +19,7 @@ class Scoreboard:
         self.screen_rect = self.screen.get_rect()
         self.settings = ai_game.settings
         self.stats = ai_game.stats
+        self.score_manager = ai_game.score_manager
 
         self.text_color = (30, 30, 30)
         self.font = pygame.font.SysFont(None, 48)
@@ -41,7 +43,7 @@ class Scoreboard:
 
     def prep_high_score(self):
         """ Formats high score to be displayed in HUD. """
-        high_score = round(self.stats.high_score, -1)
+        high_score = max(self.score_manager.high_scores)
         high_score_str = f"{high_score:,}"
         self.high_score_image = self.font.render(high_score_str, True, self.text_color, self.settings.bg_color)
 
@@ -60,8 +62,7 @@ class Scoreboard:
 
     def check_high_score(self):
         """ Checks for high score to update as needed. """
-        if self.stats.score > self.stats.high_score:
-            self.stats.high_score = self.stats.score
+        if self.stats.score > max(self.score_manager.high_scores):
             self.prep_high_score()
 
 
