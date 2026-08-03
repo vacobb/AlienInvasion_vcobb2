@@ -1,5 +1,8 @@
 # Alien Invasion
 
+## Milestone 2
+For Milestone 2, I have updated the assets for the player alien ships. I have also updated the alien ship formation patters. They now start as the basic rectangle and cycle through 7 different formations. All collisions work as intended - alien ships produce an explosion graphic and player ship collisions cause screen to shake. Docstrings are fully updated. 
+<[URL](https://youtu.be/mYU6AI7kpdY)>
 
 ## Milestone 1
 For Milestone 1, I have updated the assets for the player ship, laser, and background. I have also implemented a few changes (not pictured) to how the game functions. Now, the game can be started with the spacebar and ended with the Esc key, likewise, the WASD keys can be used for player ship movement.
