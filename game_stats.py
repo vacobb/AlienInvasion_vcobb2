@@ -10,7 +10,7 @@ class GameStats:
     def __init__(self, ai_game):
         """ Initialize attributes of the game stats. """
         self.settings = ai_game.settings
-        self.high_score = 0
+        self.high_score = 5000
         self.reset_stats()
 
 
