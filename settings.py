@@ -5,6 +5,7 @@ Starter code was taken from Alien Invaders tutorial completed in class - taken f
 24-July-2026 """
 
 import pygame
+from pathlib import Path
 
 class Settings:
     """ Handles game's setting details. """
@@ -17,6 +18,12 @@ class Settings:
         self.screen_height = 800
         self.resolution = (self.screen_width, self.screen_height)
         self.bg_color = (230, 230, 230)
+
+        # HUD settings
+        BASE_DIR = Path(__file__).resolve().parent
+        IMAGE_DIR = BASE_DIR / "Assets" / "images"
+        self.hud_height = 100
+        self.hud_image = pygame.image.load(IMAGE_DIR / "HUD_background.png")
 
         # Ship settings
         self.player_lives = 3

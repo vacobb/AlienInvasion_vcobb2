@@ -34,7 +34,7 @@ class Scoreboard:
         """ Formats score to be displayed in HUD. """
         rounded_score = round(self.stats.score, -1)
         score_str = f"{rounded_score:,}"
-        self.score_image = self.font.render(score_str, True, self.text_color, self.settings.bg_color)
+        self.score_image = self.font.render(score_str, True, self.text_color)
 
         self.score_rect = self.score_image.get_rect()
         self.score_rect.right = self.screen_rect.right - 20
@@ -43,9 +43,9 @@ class Scoreboard:
 
     def prep_high_score(self):
         """ Formats high score to be displayed in HUD. """
-        high_score = max(self.score_manager.high_scores)
+        high_score = max(max(self.score_manager.high_scores), self.stats.score)
         high_score_str = f"{high_score:,}"
-        self.high_score_image = self.font.render(high_score_str, True, self.text_color, self.settings.bg_color)
+        self.high_score_image = self.font.render(high_score_str, True, self.text_color)
 
         self.high_score_rect = self.high_score_image.get_rect()
         self.high_score_rect.centerx = self.screen_rect.centerx
@@ -69,18 +69,18 @@ class Scoreboard:
     def prep_level(self):
         """ Formats level number to be displayed in HUD. """
         level_str = str(self.stats.level)
-        self.level_image = self.font.render(level_str, True, self.text_color, self.settings.bg_color)
+        self.level_image = self.font.render(level_str, True, self.text_color)
 
         self.level_rect = self.level_image.get_rect()
-        self.level_rect.right = self.score_rect.right
-        self.level_rect.top = self.score_rect.bottom + 10
+        self.level_rect.right = self.score_rect.right - 150
+        self.level_rect.top = 20
 
 
     def prep_ships(self):
         """ Formats ship sprites to be displayed in HUD. """
         self.ships = Group()
         for ship_num in range(self.stats.ships_remaining):
-            ship = Ship(self.ai_game, scale=0.5)
-            ship.rect.x = 10 + ship_num * ship.rect.width
-            ship.rect.y = 10
+            ship = Ship(self.ai_game, scale=0.25)
+            ship.rect.x = 20 + ship_num * ship.rect.width
+            ship.rect.y = 25
             self.ships.add(ship)

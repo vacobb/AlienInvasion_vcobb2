@@ -101,6 +101,9 @@ class AlienInvasion:
                     alien.explode()
 
             self.stats.score += self.settings.alien_points
+            if self.stats.score > self.score_manager.current_high_score:
+                self.score_manager.current_high_score = self.stats.score
+                self.scoreboard.prep_high_score()
             self.scoreboard.prep_score()
             self.scoreboard.check_high_score()
 
@@ -188,7 +191,9 @@ class AlienInvasion:
         else:
             self.screen.fill(self.settings.bg_color)
 
-        pygame.draw.rect(self.screen, (0, 0, 0), (0, 0, self.settings.screen_width, 60))
+        self.screen.blit(self.settings.hud_image,(0, 0))
+
+        #pygame.draw.rect(self.screen, (0, 0, 0), (0, 0, self.settings.screen_width, 60))
 
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
@@ -217,7 +222,7 @@ class AlienInvasion:
         formation = self.formations[(self.stats.level - 1) % len(self.formations)]
         formation_width = len(formation[0])
         start_x = (self.settings.screen_width - formation_width * horizontal_spacing) // 2
-        start_y = 50
+        start_y = 60
 
         for row, line in enumerate(formation):
             for col, char in enumerate(line):

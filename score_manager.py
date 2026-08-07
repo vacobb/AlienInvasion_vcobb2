@@ -8,6 +8,7 @@ class ScoreManager:
     def __init__(self):
         self.score_file = Path("high_scores.json")
         self.high_scores = self.load_high_scores()
+        self.current_high_score = max(self.high_scores)
     
 
     def load_high_scores(self):
