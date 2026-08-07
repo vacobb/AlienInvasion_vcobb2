@@ -38,7 +38,7 @@ class Scoreboard:
 
         self.score_rect = self.score_image.get_rect()
         self.score_rect.right = self.screen_rect.right - 20
-        self.score_rect.top = 20
+        self.score_rect.top = 17
 
 
     def prep_high_score(self):
@@ -57,6 +57,7 @@ class Scoreboard:
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
+        self.screen.blit(self.lives_label, self.lives_label_rect)
         self.ships.draw(self.screen)
 
 
@@ -73,14 +74,21 @@ class Scoreboard:
 
         self.level_rect = self.level_image.get_rect()
         self.level_rect.right = self.score_rect.right - 150
-        self.level_rect.top = 20
+        self.level_rect.top = 17
 
 
     def prep_ships(self):
         """ Formats ship sprites to be displayed in HUD. """
+        self.lives_label = self.font.render("Lives: ", True,self.text_color)
+        self.lives_label_rect = self.lives_label.get_rect()
+        self.lives_label_rect.left = 15
+        self.lives_label_rect.centery = 32
+
         self.ships = Group()
+
         for ship_num in range(self.stats.ships_remaining):
             ship = Ship(self.ai_game, scale=0.25)
-            ship.rect.x = 20 + ship_num * ship.rect.width
+            ship.rect.x = self.lives_label_rect.right + 15 + ship_num * (ship.rect.width + 5)
             ship.rect.y = 25
+            ship.rect.centery = self.lives_label_rect.centery
             self.ships.add(ship)

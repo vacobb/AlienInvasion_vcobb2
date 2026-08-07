@@ -83,7 +83,7 @@ class AlienInvasion:
         self.bullets.update()
 
         for bullet in self.bullets.copy():
-            if bullet.rect.bottom <= 0:
+            if bullet.rect.top <= 60:
                 self.bullets.remove(bullet)
 
         self._check_bullet_alien_collisions()
